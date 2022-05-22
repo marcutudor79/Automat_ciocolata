@@ -26,7 +26,7 @@ module display( input [2:0] state,
                 output  reg D2,
                 output reg [7:0] CN );
 reg on;
-reg [10:0] clk2 = 0;
+reg [13:0] clk2 = 0;
 reg [7:0] CD1;
 reg [7:0] CD2;
                 
@@ -42,35 +42,35 @@ always @(*)
     case (state)
         STATE_00: begin
                   CD1 = 8'b00111111;
-                  CD2 = 8'b00111111;
+                  CD2 = 8'b10111111;
                   end
         STATE_05: begin        
                   CD1 = 8'b01101101;
-                  CD2 = 8'b00111111;
+                  CD2 = 8'b10111111;
                   end
         STATE_10: begin
-                  CD1 = 8'b0111111;
-                  CD2 = 8'b0000110;                  
+                  CD1 = 8'b00111111;
+                  CD2 = 8'b10000110;                  
                   end
         STATE_15: begin
                   CD1 = 8'b01101101;
-                  CD2 = 8'b00000110;
+                  CD2 = 8'b10000110;
                   end
         STATE_20: begin
                   CD1 = 8'b00111111;
-                  CD2 = 8'b01011011;
+                  CD2 = 8'b11011011;
                   end
         STATE_25: begin
                   CD1 = 8'b01101101;
-                  CD2 = 8'b01011011;
+                  CD2 = 8'b11011011;
                   end
         STATE_30: begin
                   CD1 = 8'b00111111;
-                  CD2 = 8'b01001111;
+                  CD2 = 8'b11001111;
                   end
         default: begin
                  CD1 = 8'b00111111;
-                 CD2 = 8'b00111111;
+                 CD2 = 8'b10111111;
                  end                           
         endcase
     
@@ -78,7 +78,7 @@ always @(posedge clk)
     clk2 <= clk2 + 1;
     
 always @(posedge clk)
-    if (clk2 == 11'b11111111111 )
+    if (clk2 == 14'b11111111111111 )
         on <= ~on;     
     
 always @(*)
