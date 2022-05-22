@@ -25,7 +25,8 @@ module display( input [2:0] state,
                 output  reg D1,
                 output  reg D2,
                 output reg [7:0] CN );
-reg on, clk2, clk3;
+reg on;
+reg [10:0] clk2 = 0;
 reg [7:0] CD1;
 reg [7:0] CD2;
                 
@@ -74,13 +75,11 @@ always @(*)
         endcase
     
 always @(posedge clk)
-    clk2 <= ~clk2;
+    clk2 <= clk2 + 1;
     
-always @(posedge clk2)
-    clk3 <= ~clk3;    
-    
-always @(posedge clk3)
-    on <= ~on;     
+always @(posedge clk)
+    if (clk2 == 11'b11111111111 )
+        on <= ~on;     
     
 always @(*)
     if (on) begin
