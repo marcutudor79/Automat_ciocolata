@@ -5,3 +5,5 @@ BTNR -> adds 0.5 <br>
 BNTC -> adds 1 <br>
 BNTL ACK -> substracts 2.5 from the sum <br>
 BNTU RST -> goes back to 0 <br>
+
+<h2> FPGA: Nexys A7 100T Digilent </h2>
